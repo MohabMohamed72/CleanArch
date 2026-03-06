@@ -1,0 +1,12 @@
+import { Observable } from 'rxjs';
+import { Params } from '../../../base/BaseModel/Params';
+import { RequestResponse } from '../../../base/ServicesHandler/RequestResponse';
+import { TeamEntity } from '../Entites/Team';
+
+export interface ITeamRepo {
+  createTeam(params: Params): any;
+  EditTeam(params: Params): Observable<RequestResponse<any>>;
+  deleteTeam(id: number): Observable<RequestResponse<any>>;
+  GetTeam(id: number): Observable<RequestResponse<TeamEntity>>;
+  GetTeams(Params:Params): Promise<{ data: any; message: string }>;
+}

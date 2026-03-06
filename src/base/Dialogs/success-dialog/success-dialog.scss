@@ -1,0 +1,18 @@
+@import '../../../styles.scss';
+
+.mat-typography {
+  @include flex-column(nowrap, center, center);
+  gap: 20px;
+  background-color: white;
+  // border-radius: 40px;
+  img {
+    max-width: 300px;
+    max-height: 300px;
+  }
+  .text {
+    font-family: 'Regular';
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+  }
+}
