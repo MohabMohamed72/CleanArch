@@ -8,7 +8,7 @@ import { RequestTpeEnum } from '../../../base/ServicesHandler/RequestTpeEnum';
 import { TeamEntity } from '../../Domain/Entites/Team';
 
 @Injectable({ providedIn: 'root' })
-export class CreateTeamApiService {
+export class TeamApiService {
   constructor(private _ApiHandleService: ApiHandleService) {}
 
   createTeamApi(data: Params): Observable<RequestResponse<any>> {

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { CreateTeamUsecase } from '../../Application/Usecases/CreateTeamUsecase';
+import { TeamUsecase } from '../../Application/Usecases/CreateTeamUsecase';
 import { TeamEntity } from '../../Domain/Entites/Team';
 import { CommonModule, JsonPipe, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -9,20 +9,24 @@ import { FormsModule } from '@angular/forms';
   imports: [JsonPipe, NgIf, FormsModule],
   templateUrl: './team.html',
   styleUrl: './team.css',
-  providers: [CreateTeamUsecase],
+  providers: [TeamUsecase],
 })
 export class Team implements OnInit {
   constructor(
-    private teamUsecase: CreateTeamUsecase,
+    private teamUsecase: TeamUsecase,
     private cdr: ChangeDetectorRef,
   ) {}
-  public teamTitle: string = '';
 
+  public teamTitle: string = '';
+  public EditteamTitle: string = '';
+  public SelectedId: number = 0;
+  public loading = true;
   public Data: any;
+  public teamDetails: TeamEntity = new TeamEntity();
+
   public TeamParams = new TeamEntity({
     title: this.teamTitle,
   });
-  public loading = true;
 
   updateTitle(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -31,6 +35,21 @@ export class Team implements OnInit {
       title: this.teamTitle,
     });
   }
+
+  setSelectedId(id: number, title: string) {
+    this.SelectedId = id;
+    this.EditteamTitle = title;
+  }
+
+  updateTitleEdit(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.EditteamTitle = input.value;
+    this.TeamParams = new TeamEntity({
+      id: this.SelectedId,
+      title: this.EditteamTitle,
+    });
+  }
+
   async GetTeams() {
     this.Data = await this.teamUsecase.GetTeams(this.TeamParams);
     this.loading = false;
@@ -41,21 +60,6 @@ export class Team implements OnInit {
     await this.teamUsecase.CreateTeam(this.TeamParams);
     this.GetTeams();
     this.cdr.detectChanges();
-  }
-
-  public EditteamTitle: string = '';
-  public SelectedId: number = 0;
-  setSelectedId(id: number, title: string) {
-    this.SelectedId = id;
-    this.EditteamTitle = title;
-  }
-  updateTitleEdit(event: Event) {
-    const input = event.target as HTMLInputElement;
-    this.EditteamTitle = input.value;
-    this.TeamParams = new TeamEntity({
-      id: this.SelectedId,
-      title: this.EditteamTitle,
-    });
   }
 
   async EditTeam() {
@@ -73,7 +77,6 @@ export class Team implements OnInit {
     this.cdr.detectChanges();
   }
 
-  public teamDetails: TeamEntity = new TeamEntity();
   async ShowTeam(event: number) {
     this.TeamParams = new TeamEntity({
       id: Number(event),

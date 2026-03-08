@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { TeamRepo } from '../../Infrastructure/Repos/CreateTeamRepo';
 import { Params } from '../../../base/BaseModel/Params';
 import { DialogHanlde } from '../../../base/DialogsHanlde/DialogsState';
+import { ITeamRepo, TEAM_REPO_TOKEN } from '../../Domain/RepoInterface/TeamRepo';
 
 @Injectable({ providedIn: 'root' })
-export class CreateTeamUsecase {
+export class TeamUsecase {
   constructor(
-    private TeamRepo: TeamRepo,
+    @Inject(TEAM_REPO_TOKEN) private TeamRepo: ITeamRepo,
     private dialogHndler: DialogHanlde,
   ) {}
 
