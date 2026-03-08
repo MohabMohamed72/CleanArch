@@ -1,0 +1,74 @@
+.container {
+  background-color: black;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  .card {
+    display: flex;
+    background-color: white;
+    color: black;
+    width: 50%;
+    padding: 20px;
+    border-radius: 10px;
+    justify-content: space-between;
+  }
+  .card .btns {
+    display: flex;
+    gap: 10px;
+    button {
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .delete {
+      background-color: red;
+      color: white;
+    }
+    .show {
+      background-color: green;
+      color: white;
+    }
+    .edit {
+      background-color: blue;
+      color: white;
+    }
+  }
+}
+.teamDetails {
+  display: flex;
+  background-color: white;
+  color: black;
+  width: 50%;
+  padding: 20px;
+  border-radius: 10px;
+  justify-content: space-between;
+}
+.create {
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: green;
+  color: white;
+}
+.edit {
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: blue;
+  color: white;
+}
+.creat-input {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: whitesmoke;
+}
+.edit-input {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: whitesmoke;
+}

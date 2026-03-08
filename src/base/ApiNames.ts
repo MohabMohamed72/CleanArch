@@ -23,4 +23,16 @@ export class ApiNames {
   get FetchTeams() {
     return this.baseUrl + this.prefix + 'fetch_teams';
   }
+  get CreateTeam() {
+    return this.baseUrl + this.prefix + 'create_team';
+  }
+  get EditTeam() {
+    return this.baseUrl + this.prefix + 'update_team';
+  }
+  get DeleteTeam() {
+    return this.baseUrl + this.prefix + 'delete_team';
+  }
+  get TeamDetails() {
+    return this.baseUrl + this.prefix + 'fetch_team_details';
+  }
 }

@@ -1,16 +1,21 @@
 import { Params } from '@angular/router';
 
 export class TeamEntity implements Params {
-  public id: number;
-  public title: string;
-  constructor(data: { id: number; title: string }) {
-    this.id = data.id;
-    this.title = data.title;
+  public id?: number;
+  public title?: string;
+  constructor(data?: { id?: number; title?: string }) {
+    this.id = data?.id;
+    this.title = data?.title;
   }
 
   toJson(): any {
     return {
-      title: this.title,
+      ...(this.id && { team_id: this.id }),
+      ...(this.title && {
+        translations: {
+          title_en: this.title,
+        },
+      }),
     };
   }
 

@@ -1,5 +1,30 @@
-<div *ngIf="loading">Loading...</div>
+<div class="container">
+  <div *ngIf="loading">Loading...</div>
 
-<div *ngIf="!loading">
-  {{ Data | json }}
+  @for (item of Data; track $index) {
+    <div *ngIf="!loading" class="card">
+      <p>{{ item.title }}</p>
+      <div class="btns">
+        <button class="delete" (click)="deleteTeam(item.id)">delete</button>
+        <button class="show" (click)="ShowTeam(item.id)">Show</button>
+        <button class="edit" (click)="setSelectedId(item.id, item.title)">Edit</button>
+      </div>
+    </div>
+  }
+
+  <input class="creat-input" type="text" [(ngModel)]="teamTitle" (input)="updateTitle($event)" />
+  <button class="create" (click)="CreatTeam()">Create</button>
+
+  <input
+    class="edit-input"
+    type="text"
+    [(ngModel)]="EditteamTitle"
+    (input)="updateTitleEdit($event)"
+  />
+  <button class="edit" (click)="EditTeam()">Edit</button>
+
+  <div class="teamDetails">
+    <p>{{ teamDetails?.title }}</p>
+    <p>{{ teamDetails?.id }}</p>
+  </div>
 </div>

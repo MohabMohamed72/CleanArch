@@ -13,7 +13,7 @@ export class CreateTeamApiService {
 
   createTeamApi(data: Params): Observable<RequestResponse<any>> {
     return this._ApiHandleService.sendHttpRequest<RequestResponse<any>>(
-      ApiNames.Instance.FetchTeams,
+      ApiNames.Instance.CreateTeam,
       RequestTpeEnum.Post,
       data.toJson(),
     );
@@ -21,25 +21,25 @@ export class CreateTeamApiService {
 
   editTeamApi(data: Params): Observable<RequestResponse<any>> {
     return this._ApiHandleService.sendHttpRequest<RequestResponse<any>>(
-      ApiNames.Instance.FetchTeams,
-      RequestTpeEnum.Put,
+      ApiNames.Instance.EditTeam,
+      RequestTpeEnum.Post,
       data.toJson(),
     );
   }
 
-  deleteTeamApi(id: number): Observable<RequestResponse<any>> {
+  deleteTeamApi(data: Params): Observable<RequestResponse<any>> {
     return this._ApiHandleService.sendHttpRequest<RequestResponse<any>>(
-      ApiNames.Instance.FetchTeams,
-      RequestTpeEnum.Delete,
-      { id },
+      ApiNames.Instance.DeleteTeam,
+      RequestTpeEnum.Post,
+      data.toJson(),
     );
   }
 
-  getTeamApi(id: number): Observable<RequestResponse<TeamEntity>> {
+  getTeamApi(data: Params): Observable<RequestResponse<TeamEntity>> {
     return this._ApiHandleService.sendHttpRequest<RequestResponse<TeamEntity>>(
-      ApiNames.Instance.FetchTeams,
-      RequestTpeEnum.Get,
-      { id },
+      ApiNames.Instance.TeamDetails,
+      RequestTpeEnum.Post,
+      data.toJson(),
     );
   }
 

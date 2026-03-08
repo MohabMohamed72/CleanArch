@@ -13,21 +13,33 @@ export class TeamRepo implements ITeamRepo {
   async createTeam(params: Params): Promise<{ data: any; message: string }> {
     const Resdata = await firstValueFrom(this.createTeamApiService.createTeamApi(params));
     return {
-      data: Resdata.data.map((el: any) => TeamEntity.fromMap(el)),
+      data: TeamEntity.fromMap(Resdata.data),
       message: Resdata.message,
     };
   }
 
-  EditTeam(params: Params): Observable<RequestResponse<any>> {
-    return this.createTeamApiService.editTeamApi(params);
+  async EditTeam(params: Params): Promise<{ data: any; message: string }> {
+    const Resdata = await firstValueFrom(this.createTeamApiService.editTeamApi(params));
+    return {
+      data: TeamEntity.fromMap(Resdata.data),
+      message: Resdata.message,
+    };
   }
 
-  deleteTeam(id: number): Observable<RequestResponse<any>> {
-    return this.createTeamApiService.deleteTeamApi(id);
+  async deleteTeam(params: Params): Promise<{ data: any; message: string }> {
+    const Resdata = await firstValueFrom(this.createTeamApiService.deleteTeamApi(params));
+    return {
+      data: TeamEntity.fromMap(Resdata.data),
+      message: Resdata.message,
+    };
   }
 
-  GetTeam(id: number): Observable<RequestResponse<TeamEntity>> {
-    return this.createTeamApiService.getTeamApi(id);
+  async GetTeam(params: Params): Promise<{ data: any; message: string }> {
+    const Resdata = await firstValueFrom(this.createTeamApiService.getTeamApi(params));
+    return {
+      data: TeamEntity.fromMap(Resdata.data),
+      message: Resdata.message,
+    };
   }
 
   async GetTeams(params: Params): Promise<{ data: any; message: string }> {
